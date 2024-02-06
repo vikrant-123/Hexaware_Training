@@ -1,0 +1,65 @@
+create database hospitalmgmtsystem;
+use hospitalmgmtsystem;
+
+CREATE TABLE Patient (
+    patientId INT PRIMARY KEY AUTO_INCREMENT,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    dateOfBirth DATE,
+    gender VARCHAR(10),
+    contactNumber VARCHAR(20),
+    address VARCHAR(100)
+);
+
+CREATE TABLE Doctor (
+    doctorId INT PRIMARY KEY AUTO_INCREMENT,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    specialization VARCHAR(100),
+    contactNumber VARCHAR(20)
+);
+
+CREATE TABLE Appointment (
+    appointmentId INT PRIMARY KEY AUTO_INCREMENT,
+    patientId INT,
+    doctorId INT,
+    appointmentDate DATE,
+    description TEXT,
+    FOREIGN KEY (patientId) REFERENCES Patient(patientId),
+    FOREIGN KEY (doctorId) REFERENCES Doctor(doctorId)
+);
+
+
+INSERT INTO Patient (firstName, lastName, dateOfBirth, gender, contactNumber, address)
+VALUES
+('Ramesh', 'Kumar', '2001-06-30', 'Male', '9876543210', 'Bangalore'),
+('Sunita', 'Patel', '2000-09-15', 'Female', '9876543211', 'Mumbai'),
+('Rajesh', 'Singh', '2003-03-20', 'Male', '9876543212', 'Delhi'),
+('Abhishek', 'Shrama', '2002-05-01', 'Male', '9876543213', 'Pune'),
+('Sakshi', 'Kumar', '2001-08-10', 'Female', '9876543221', 'Chennai');
+
+
+INSERT INTO Doctor (firstName, lastName, specialization, contactNumber)
+VALUES
+('Dr. Anjali', 'Gupta', 'Gynecologist', '9876543220'),
+('Dr. Sanjay', 'Sharma', 'Orthopedic Surgeon', '9876543221'),
+('Dr. Priya', 'Verma', 'Psychiatrist', '9876543222'),
+('Dr. Prashant', 'Kumar', 'Dermatologist', '9876543322'),
+('Dr. Nandini', 'Roy', 'Neurologist', '9876543234');
+
+
+INSERT INTO Appointment (patientId, doctorId, appointmentDate, description)
+VALUES
+(1, 1, '2024-02-10', 'Regular checkup'),
+(2, 2, '2024-02-12', 'Bone fracture consultation'),
+(3, 3, '2024-02-15', 'Mental health checkup'),
+(4, 4, '2024-02-20', 'Skin condition consultation'),
+(5, 5, '2024-02-22', 'Headache diagnosis');
+
+
+
+SELECT * FROM Patient;
+SELECT * FROM Doctor;
+SELECT * FROM Appointment;
+
+
